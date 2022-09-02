@@ -36,7 +36,7 @@ class _loginState extends State<login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
              children: [
-               const Text('Login',style: TextStyle (fontSize: 30, fontWeight: FontWeight.bold,),
+               const Text('Login',style: TextStyle (fontSize: 50, fontWeight: FontWeight.w300),
 
                ),
                const SizedBox(
@@ -124,11 +124,11 @@ class _loginState extends State<login> {
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
                    const Text('don`t have an account',
-                   style: TextStyle(fontSize: 22),),
+                   style: TextStyle(fontSize: 22 ,fontWeight: FontWeight.w300),),
                    TextButton(onPressed: ()
                    {
 
-                   }, child: const Text('Register Now',style: TextStyle(fontSize: 20, color:Color(0xff458050)),),
+                   }, child: const Text('Register Now',style: TextStyle(fontSize: 20, color:Color(0xff458050), fontWeight: FontWeight.w300),),
                    ),
                  ],
                ),

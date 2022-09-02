@@ -23,7 +23,7 @@ class signUp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Sign Up',style: TextStyle (fontSize: 30, fontWeight: FontWeight.bold,),
+                  const Text('Sign Up',style: TextStyle (fontSize: 50, fontWeight: FontWeight.w300,),
 
                   ),
                   const SizedBox(

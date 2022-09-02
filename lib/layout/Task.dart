@@ -26,7 +26,7 @@ class Task extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w300)),
+                    Text(title,style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w600)),
 
                   ],
                 ),

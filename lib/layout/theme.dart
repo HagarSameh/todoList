@@ -1,15 +1,11 @@
 import 'package:aaa/modules/archived_Tasks/calender.dart';
 import 'package:aaa/modules/doneTasks/doneTask.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../components/constants.dart';
 import '../modules/new_Tasks/new_Tasks.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:aaa/layout/language.dart';
 import 'package:aaa/layout/home.dart';
-import 'package:aaa/layout/theme_shared_prefrences.dart';
 import 'package:aaa/layout/ThemeModel.dart';
 
 class theme extends StatefulWidget {
@@ -70,7 +66,7 @@ class _themeState extends State<theme> {
                   child: Text('Drawer Header',
                     style: TextStyle(fontSize: 20,
                         color: Colors.white,
-                        fontWeight: FontWeight.w300),),
+                        fontWeight: FontWeight.w600),),
 
                 ),
               ),
@@ -79,7 +75,7 @@ class _themeState extends State<theme> {
                 title: const Text('Language',
                     style: TextStyle(fontSize: 20,
                         color: const Color(0xff458050),
-                        fontWeight: FontWeight.w300)),
+                        fontWeight: FontWeight.w600)),
                 onTap: () {
                   // Update the state of the app
                   // ...
@@ -92,7 +88,7 @@ class _themeState extends State<theme> {
                 title: const Text('Theme',
                     style: TextStyle(fontSize: 20,
                         color: const Color(0xff458050),
-                        fontWeight: FontWeight.w300)),
+                        fontWeight: FontWeight.w600)),
                 onTap: () {},
               ),
 
@@ -101,7 +97,7 @@ class _themeState extends State<theme> {
                 title: const Text('Home',
                     style: TextStyle(fontSize: 20,
                         color:const Color(0xff458050),
-                        fontWeight: FontWeight.w300)),
+                        fontWeight: FontWeight.w600)),
                 onTap: () {
                   // Update the state of the app
                   // ...
@@ -144,7 +140,7 @@ class _themeState extends State<theme> {
                       color: const Color(0xff458050),
                     ),
                     child: Center(child: Text('Light Theme', style:
-                    TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)),
+                    TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),)),
                   ),
                 )
 
@@ -167,7 +163,7 @@ class _themeState extends State<theme> {
                         color: const Color(0xff458050),
                       ),
                       child: Center(child: Text('Dark Theme', style:
-                      TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)),
+                      TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),)),
                     ),
                   )
               ),

@@ -5,6 +5,7 @@ import 'package:aaa/layout/home.dart';
 import 'package:aaa/modules/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'layout/splashScreen.dart';
 import 'modules/firsthome/aaa.dart';
 import 'package:aaa/layout/language.dart';
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: themeModel.isDark ? ThemeData.dark() : ThemeData.light(),
-          home: first_page(),
+          home: SplashScreen(),
       );
     })
     );

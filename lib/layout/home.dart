@@ -10,6 +10,7 @@ import 'package:aaa/layout/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:aaa/layout/theme_shared_prefrences.dart';
 import 'package:aaa/layout/ThemeModel.dart';
+import 'package:aaa/util/notification_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class Home extends StatefulWidget {
 
 }
 class _HomeState extends State<Home> {
-  
+  late final NotificationService notificationService;
   List<Widget> screens=[
      newtask(),
      const doneTask(),
@@ -36,7 +37,7 @@ class _HomeState extends State<Home> {
   var formKey = GlobalKey<FormState>();
   int currentIndex=0;
   //for check box
-  bool? check1 = false; //true for checked checkbox, false for unchecked one
+  bool check1 = false; //true for checked checkbox, false for unchecked one
 
   bool isBottomSheetShown = false;
   String dropdownValue ="Work";
@@ -48,8 +49,18 @@ class _HomeState extends State<Home> {
   @override
   void initState(){
     super.initState();
+    notificationService = NotificationService();
+    listenToNotificationStream();
+    notificationService.initializePlatformNotifications();
     createDatabase();
 }
+  void listenToNotificationStream() =>
+      notificationService.behaviorSubject.listen((payload) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>calender()));
+      });
   @override
   Widget build(BuildContext context) {
 
@@ -86,14 +97,14 @@ class _HomeState extends State<Home> {
                   color:  const Color(0xff458050)
                 ),
                 child: Text('Drawer Header',
-                  style: TextStyle(fontSize: 20,color:Colors.white,fontWeight: FontWeight.w300),),
+                  style: TextStyle(fontSize: 20,color:Colors.white,fontWeight: FontWeight.w600),),
 
               ),
             ),
 
             ListTile(
               title: const Text('Language',
-                  style: TextStyle(fontSize: 20,color: const Color(0xff458050),fontWeight: FontWeight.w300)),
+                  style: TextStyle(fontSize: 20,color: const Color(0xff458050),fontWeight: FontWeight.w600)),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -104,7 +115,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Theme',
-                  style: TextStyle(fontSize: 20,color:const Color(0xff458050),fontWeight: FontWeight.w300)),
+                  style: TextStyle(fontSize: 20,color:const Color(0xff458050),fontWeight: FontWeight.w600)),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -118,7 +129,7 @@ class _HomeState extends State<Home> {
               title: const Text('Home',
                   style: TextStyle(fontSize: 20,
                       color: const Color(0xff458050),
-                      fontWeight: FontWeight.w300)),
+                      fontWeight: FontWeight.w600)),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -240,21 +251,38 @@ class _HomeState extends State<Home> {
                             height: 15,
                           ),
                           //notification check box
-                          CheckboxListTile( //checkbox positioned at left
-                            value: check1,
-                            controlAffinity: ListTileControlAffinity.leading,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                check1 = value;
-                                print(value);
-                              });
-                            },
-                            title: const Text("Do you really want to learn Flutter?"),
-                          ),
+                         Row(
+                           children: <Widget>[
+                             Checkbox(
+                               value: check1,
+                               onChanged: (bool? newValue) async {
+                                 setState(() {
+                                   check1 = newValue!;
+                                   print(check1);
+                                 });
+                                 await notificationService.showScheduledLocalNotification(
+                                     id: 1,
+                                     title: "Drink Water",
+                                     body: "Time to drink some water!",
+                                     payload: "You just took water! Huurray!",
+                                     seconds: 2);
+                               },
+                             ),
+                             const Text("Send Me a notification",
+                                 style: TextStyle(fontSize: 20,color:Colors.black54,fontWeight: FontWeight.w600)),
+
+                           ],
+                         ),
                           const SizedBox(
                         height: 15,
                       ),
-                          const Text("Category"),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                         child: Text("Category",
+                             style: TextStyle(fontSize: 20,color:Colors.black54,fontWeight: FontWeight.w600)),
+
+                      ),
+
                           Center(
                           child: SizedBox(
                               width: 250,
@@ -316,12 +344,14 @@ class _HomeState extends State<Home> {
          ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor:const Color(0xff458050),
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: (index){
           setState((){
             currentIndex=index;
           });
+
 
         },
         items: const [

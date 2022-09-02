@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-bool isChecked = false;
+bool check1 = false;
 
 Widget buildTaskItem(Map model)=>
 Padding(
-    padding:  const EdgeInsets.all(20.0),
+    padding:  const EdgeInsets.all(10.0),
     child: InkWell(
       onTap: (){
         //go to task page
@@ -13,22 +13,43 @@ Padding(
         //delete this task and move it to done tasks
       },
       child: Container(
-        child: Row(
+        height: 80,
+        child:
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+
+            ),
+            color:  const Color(0xffe4eae4),
+            elevation: 0,
+            shadowColor: Colors.transparent,
+
+            child:Row(
           children: [
+            Checkbox(
+              value: check1,
+              onChanged: (bool? newValue) {
+               /* setState(() {
+                  check1 = newValue!;
+                  print(check1);
+                });*/
+              },
+            ),
             const SizedBox(
-              width: 20,
+              width: 10,
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${model['title']}',style: const TextStyle(fontSize: 30,fontWeight: FontWeight.w300)),
-                Text('${model['date']}', style: const TextStyle(fontSize: 15,fontWeight: FontWeight.w300)),
+                Text('${model['title']}',style: const TextStyle(fontSize: 20,)),
+                Text('${model['date']}', style: const TextStyle(fontSize: 10)),
                 Text('${model['time']}',),
               ],
             ),
           ],
         ),
+      ),
       ),
     )
 );

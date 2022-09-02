@@ -1,4 +1,5 @@
 import 'package:aaa/layout/ThemeModel.dart';
+import 'package:aaa/layout/first_page.dart';
 import 'package:aaa/modules/Massenger/Massenger.dart';
 import 'package:aaa/layout/home.dart';
 import 'package:aaa/modules/login_screen/login_screen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: themeModel.isDark ? ThemeData.dark() : ThemeData.light(),
-          home: Home(),
+          home: first_page(),
       );
     })
     );

@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(titles[currentIndex]),
         //what i added
-        backgroundColor: const Color(0xFFa48c84),
+        backgroundColor: const Color(0xff458050),
         elevation: 0.0,
         actions: [
           // Navigate to the Search Screen
@@ -83,17 +83,17 @@ class _HomeState extends State<Home> {
               height: 90,
               child:  const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.brown
+                  color:  const Color(0xff458050)
                 ),
                 child: Text('Drawer Header',
-                  style: TextStyle(fontSize: 20,color: Colors.white,fontWeight: FontWeight.w300),),
+                  style: TextStyle(fontSize: 20,color:Colors.white,fontWeight: FontWeight.w300),),
 
               ),
             ),
 
             ListTile(
               title: const Text('Language',
-                  style: TextStyle(fontSize: 20,color: Colors.brown,fontWeight: FontWeight.w300)),
+                  style: TextStyle(fontSize: 20,color: const Color(0xff458050),fontWeight: FontWeight.w300)),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               title: const Text('Theme',
-                  style: TextStyle(fontSize: 20,color:Colors.brown,fontWeight: FontWeight.w300)),
+                  style: TextStyle(fontSize: 20,color:const Color(0xff458050),fontWeight: FontWeight.w300)),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -117,7 +117,7 @@ class _HomeState extends State<Home> {
             ListTile(
               title: const Text('Home',
                   style: TextStyle(fontSize: 20,
-                      color: Colors.brown,
+                      color: const Color(0xff458050),
                       fontWeight: FontWeight.w300)),
               onTap: () {
                 // Update the state of the app
@@ -134,6 +134,7 @@ class _HomeState extends State<Home> {
       body: tasks.isEmpty ? const Center(child: CircularProgressIndicator()): screens[currentIndex],
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor:  const Color(0xff458050) ,
         onPressed: () //async
         {
           if (isBottomSheetShown)
@@ -382,6 +383,7 @@ version: 1,
       return null;
     });
   }
+
   Future<List<Map>> getDataFromDatabase(database) async{
    return  await database.rawQuery('SELECT * FROM tasks');
 
@@ -398,7 +400,7 @@ class SearchPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         // The search area here
-          backgroundColor: const Color(0xFFa48c84),
+          backgroundColor: const Color(0xff458050),
           elevation: 0.0,
           title: Container(
             width: double.infinity,

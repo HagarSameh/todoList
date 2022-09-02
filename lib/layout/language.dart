@@ -47,7 +47,7 @@ class _languageState extends State<language> {
         key: scaffoldKey,
         appBar: AppBar(
           title: const Text("Languges"),
-          backgroundColor: const Color(0xFFa48c84),
+          backgroundColor: const Color(0xff458050),
           elevation: 0.0,
         ),
 
@@ -65,7 +65,7 @@ class _languageState extends State<language> {
                 height: 90,
                 child: const DrawerHeader(
                   decoration: BoxDecoration(
-                      color: Colors.brown
+                      color:const Color(0xff458050)
                   ),
                   child: Text('Drawer Header',
                     style: TextStyle(fontSize: 20,
@@ -78,14 +78,14 @@ class _languageState extends State<language> {
               ListTile(
                 title: const Text('Language',
                     style: TextStyle(fontSize: 20,
-                        color: Colors.brown,
+                        color: const Color(0xff458050),
                         fontWeight: FontWeight.w300)),
                 onTap: () {}
               ),
               ListTile(
                 title: const Text('Theme',
                     style: TextStyle(fontSize: 20,
-                        color: Colors.brown,
+                        color: const Color(0xff458050),
                         fontWeight: FontWeight.w300)),
                 onTap: () {
                   Navigator.push(context,
@@ -97,7 +97,7 @@ class _languageState extends State<language> {
               ListTile(
                 title: const Text('Home',
                     style: TextStyle(fontSize: 20,
-                        color: Colors.brown,
+                        color: const Color(0xff458050),
                         fontWeight: FontWeight.w300)),
                 onTap: () {
                   // Update the state of the app
@@ -137,7 +137,7 @@ class _languageState extends State<language> {
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: const Color(0xFFa48c84),
+                        color: const Color(0xff458050),
                       ),
                       child: const Center(child: Text('English',
                         style:
@@ -173,7 +173,7 @@ class _languageState extends State<language> {
                         height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          color: const Color(0xFFa48c84),
+                          color: const Color(0xff458050),
                         ),
                         child: const Center(child: Text('Arabic', style:
                         TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)),

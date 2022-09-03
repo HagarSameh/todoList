@@ -1,13 +1,13 @@
-import 'package:aaa/components/components.dart';
+import 'package:aaa/components/components2.dart';
 import 'package:flutter/material.dart';
 import '../../components/constants.dart';
-class newtask extends StatelessWidget {
-  components com=components();
+class done_Tasks extends StatelessWidget {
+  components2 coom=components2();
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        itemBuilder: (context, index) =>com.buildTaskItem(tasks[index]),
+        itemBuilder: (context, index) =>coom.buildTaskItem2(done[index]),
         separatorBuilder: (context, index)=> Padding(
           padding: const EdgeInsetsDirectional.only(start: 20,),
           child: Container(
@@ -16,6 +16,6 @@ class newtask extends StatelessWidget {
             color: Colors.grey[300],
           ),
         ),
-        itemCount: tasks.length);
+        itemCount: done.length);
   }
 }

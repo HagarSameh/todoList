@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../../layout/data.dart';
 import '../../layout/home.dart';
 
 class login extends StatefulWidget {
@@ -103,6 +104,8 @@ class _loginState extends State<login> {
                         });
                       });
                      print( getDataFromDatabase(database));
+                      database2.execute('TRUNCATE TABLE done');
+                      database.execute('DELETE FROM tasks');
 
                      },
                      child: Container(

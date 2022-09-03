@@ -1,8 +1,10 @@
+import 'package:aaa/layout/ThemeModel.dart';
 import 'package:flutter/material.dart';
 import 'package:aaa/layout/Task.dart';
 import 'package:aaa/layout/database.dart';
 bool check1 = false;
 Map model2=Map();
+ThemeModel? themeNotifier;
 
 class components2 extends StatefulWidget {
   const components2({Key? key}) : super(key: key);
@@ -32,7 +34,7 @@ class components2 extends StatefulWidget {
                       borderRadius: BorderRadius.circular(15.0),
 
                     ),
-                    color:  const Color(0xffe4eae4),
+                    //color:  const Color(0xffe4eae4),
                     elevation: 0,
                     shadowColor: Colors.transparent,
 

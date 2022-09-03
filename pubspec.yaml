@@ -46,6 +46,8 @@ dependencies:
   get:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.0
+  flutter_restart: ^0.0.3
+  #to use:
 
 
     # flutter_local_notifications: ^9.7.0

@@ -31,6 +31,14 @@ class _HomeState extends State<Home> {
     'Done Tasks',
     'Calender',
   ];
+
+  void rebuildAllChildren(BuildContext context) {
+    void rebuild(Element el) {
+      el.markNeedsBuild();
+      el.visitChildren(rebuild);
+    }
+    (context as Element).visitChildren(rebuild);
+  }
   late Database database;
   String? gender; //no radio button will be selected
 
@@ -62,7 +70,7 @@ class _HomeState extends State<Home> {
         );});
   @override
   Widget build(BuildContext context) {
-
+    rebuildAllChildren(context);
     return Consumer(builder: (context, ThemeModel themeNotifier, child) {
     return Scaffold(
       key: scaffoldKey,
@@ -471,4 +479,5 @@ class SearchPage extends StatelessWidget {
       ),
     );
   }
+
 }

@@ -39,8 +39,10 @@ class _TaskState extends State<Task> {
     super.initState();
     createDatabase();
   }
+
   @override
   Widget build(BuildContext context) {
+
     return   Expanded(
       child: Scaffold(
           appBar: AppBar(
@@ -190,6 +192,7 @@ class _TaskState extends State<Task> {
                                        , timeController.text
                                        ,Task.id]);
                                  Navigator.pop(context);
+                                 //setState(() { AppBuilder.of(context).rebuild();});
                                },
                                child: Container(
                                  width: 200,

@@ -34,7 +34,7 @@ class _search_TaskState extends State<search_Task> {
   search_Task t=search_Task();
   String dropdownValue ="Work";
   int currentIndex=0;
-  late ThemeModel themeNotifier;
+  ThemeModel? themeNotifier;
 
 
   String newCategrory='';
@@ -56,9 +56,9 @@ class _search_TaskState extends State<search_Task> {
         body:
         Padding(
 
-          padding:  const EdgeInsets.all(10.0),
+          padding:  const EdgeInsets.all(5.0),
           child: SizedBox(
-            height: 480,
+            height: 380,
             child:
             Expanded(
               child: Card(
@@ -67,7 +67,7 @@ class _search_TaskState extends State<search_Task> {
                   borderRadius: BorderRadius.circular(15.0),
 
                 ),
-                color:  const Color(0xffe4eae4),
+                color: themeNotifier?.isDark == true ? Colors.black26 :const Color(0xffe4eae4),
                 elevation: 0,
                 shadowColor: Colors.transparent,
 
@@ -80,7 +80,7 @@ class _search_TaskState extends State<search_Task> {
                       height: 25,
                     ),
                     SizedBox(
-                      width: 350,
+                      width: 300,
                       child:
                       TextFormField(
                         keyboardType: TextInputType.text,
@@ -96,7 +96,7 @@ class _search_TaskState extends State<search_Task> {
                       height: 15,
                     ),
                     SizedBox(
-                      width: 350,
+                      width: 300,
                       child:
                       TextFormField(
                         onTap: (){ showTimePicker(context: context, initialTime: TimeOfDay.now(),).then((value) {
@@ -121,7 +121,7 @@ class _search_TaskState extends State<search_Task> {
                     ),
                    
                     SizedBox(
-                      width: 350,
+                      width: 300,
                       child:
                       TextFormField(
                         onTap: (){ showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime.parse('2022-09-29'),).then((value)
@@ -150,12 +150,12 @@ class _search_TaskState extends State<search_Task> {
                     GestureDetector(
                       onTap: () async {
                         print("Hi");
-                        updateData(status: 'New', id:0 );
+                        /*updateData(status: 'New', id:0 );
                         int count = await database!.rawUpdate(
                             'UPDATE search_Tasks SET title = ?, date = ? , time=? WHERE id = ?',
                             [titleController.text, dateController.text
                               , timeController.text
-                              ,search_Task.id]);
+                              ,search_Task.id]);*/
                         Navigator.pop(context);
                         //setState(() { AppBuilder.of(context).rebuild();});
                       },
@@ -196,18 +196,19 @@ class _search_TaskState extends State<search_Task> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.menu
             ),
-              label: 'search_Task',
+              label: 'tasks',
 
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline,),
-              label:'Done',
-            ),
-            //--------------------------------
             //What I changed
             BottomNavigationBarItem(icon: Icon(Icons.calendar_month,),
               label: 'Calender',
             ),
             //------------------------------------
+
+            BottomNavigationBarItem(icon: Icon(Icons.settings,),
+              label:'settings',
+            ),
+            //--------------------------------
 
           ],
         ),

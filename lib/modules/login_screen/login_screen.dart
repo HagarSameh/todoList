@@ -1,7 +1,6 @@
+import 'package:aaa/layout/signUp.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-
-import '../../layout/data.dart';
 import '../../layout/home.dart';
 
 class login extends StatefulWidget {
@@ -15,7 +14,6 @@ class _loginState extends State<login> {
   var emailController   = TextEditingController();
 
   var passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,128 +22,133 @@ class _loginState extends State<login> {
         elevation: 0.0,
       ),
       body: Container(
-      decoration: const BoxDecoration(
-      /* image: DecorationImage(
+        decoration: const BoxDecoration(
+          /* image: DecorationImage(
               image: AssetImage("images/bck.png"),
               fit: BoxFit.cover,
             ),*/
-      ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               const Text('Login',style: TextStyle (fontSize: 50, fontWeight: FontWeight.w300),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Login',style: TextStyle (fontSize: 50, fontWeight: FontWeight.w300),
 
-               ),
-               const SizedBox(
-                 height: 40,
-               ),
-               TextFormField(
-                 controller: emailController,
-                 onFieldSubmitted: (value){
-                  print(value);
-                 },
-                 onChanged: (value)
-                 {
-                   print(value);
-                 },
-                 keyboardType: TextInputType.emailAddress,
-                 decoration: const InputDecoration(labelText: 'email address',
-                 border: const OutlineInputBorder(),
-                   prefixIcon: Icon(Icons.email,),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  TextFormField(
+                    controller: emailController,
+                    onFieldSubmitted: (value){
+                      print(value);
+                    },
+                    onChanged: (value)
+                    {
+                      print(value);
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(labelText: 'email address',
+                      border: const OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email,),
 
-                 ),
-               ),
-               const SizedBox(
-                 height: 15,
-               ),
-               TextFormField(
-                 controller: passwordController,
-                 onFieldSubmitted: (value){
-                   print(value);
-                 },
-                 onChanged: (value)
-                 {
-                   print(value);
-                 },
-                 keyboardType: TextInputType.visiblePassword,
-                 obscureText:true ,
-                 decoration: const InputDecoration(labelText: 'Password',
-                   border: const OutlineInputBorder(),
-                   prefixIcon: Icon(Icons.lock,),
-                   suffixIcon: const Icon(Icons.remove_red_eye)
-                 ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    controller: passwordController,
+                    onFieldSubmitted: (value){
+                      print(value);
+                    },
+                    onChanged: (value)
+                    {
+                      print(value);
+                    },
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText:true ,
+                    decoration: const InputDecoration(labelText: 'Password',
+                        border:  OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.lock,),
+                        suffixIcon:  Icon(Icons.remove_red_eye)
 
-               ),
-               const SizedBox(
-                 height: 20,
-               ),
-               Container(
-                   width: 280,
-                   height: 45,
-                   child:
-                   GestureDetector(
-                     onTap: () {
-                       if(emailController.text=='ahmed'||emailController.text=='monica'||emailController.text=='hager'
-                           || passwordController.text=='ahmed'||passwordController.text=='monica'||passwordController.text=='hager'
-                       ) {
-                         print(emailController.text);
-                         print(passwordController.text);
-                         Navigator.push(context,
-                           MaterialPageRoute(
-                               builder: (context) => const Home()),);
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                      width: 280,
+                      height: 45,
+                      child:
+                      GestureDetector(
+                        onTap: () {
+                          if(emailController.text=='ahmed'||emailController.text=='monica'||emailController.text=='hager'
+                              || passwordController.text=='ahmed'||passwordController.text=='monica'||passwordController.text=='hager'
+                          ) {
+                            print(emailController.text);
+                            print(passwordController.text);
+                            Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Home()),);
 
-                         createDatabase();
-                         insertDatabase(
-                           email: emailController.text,
-                           password: passwordController.text,
-                         ).then((value) {
-                           getDataFromDatabase(database).then((value) {
-                             Navigator.pop(context);
-                             setState(() {});
-                           });
-                         });
-                         print(getDataFromDatabase(database));
-                         //database2.execute('TRUNCATE TABLE done');
-                         database.execute('DELETE FROM tasks');
-                       }
-                     },
+                            createDatabase();
+                            insertDatabase(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ).then((value) {
+                              getDataFromDatabase(database).then((value) {
+                                Navigator.pop(context);
+                                setState(() {});
+                              });
+                            });
+                            print(getDataFromDatabase(database));
+                            //database2.execute('TRUNCATE TABLE done');
+                            database.execute('DELETE FROM tasks');
+                          }
+                          else{
+                            print('invalid email or password');
+                          }
+                        },
 
-                     child: Container(
-                       width: 200,
-                       height: 50,
-                       decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(50),
-                         color: const Color(0xff458050),
-                       ),
-                       child: const Center(child: Text('Login', style:
-                       TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)),
-                     ),
-                   )
+                        child: Container(
+                          width: 200,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: const Color(0xff458050),
+                          ),
+                          child: const Center(child: Text('Login', style:
+                          TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w300),)),
+                        ),
+                      )
 
-               ),
-               const SizedBox(
-                 height: 15,),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                   const Text('don`t have an account',
-                   style: TextStyle(fontSize: 15 ,fontWeight: FontWeight.w300),),
-                   TextButton(onPressed: ()
-                   {
-
-                   }, child: const Text('Register Now',style: TextStyle(fontSize: 15, color:Color(0xff458050), fontWeight: FontWeight.w300),),
-                   ),
-                 ],
-               ),
-             ],
+                  ),
+                  const SizedBox(
+                    height: 15,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('don`t have an account',
+                        style: TextStyle(fontSize: 15 ,fontWeight: FontWeight.w300),),
+                      TextButton(onPressed: ()
+                      {
+                        Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) =>  signUp()),);
+                      }, child: const Text('Register Now',style: TextStyle(fontSize: 15, color:Color(0xff458050), fontWeight: FontWeight.w300),),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

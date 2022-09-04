@@ -356,7 +356,7 @@ class _HomeState extends State<Home> {
             label: 'Calender',
           ),
           //------------------------------------
-          BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline,),
+          BottomNavigationBarItem(icon: Icon(Icons.settings,),
             label:'Settings',
           ),
           //--------------------------------

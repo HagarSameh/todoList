@@ -1,3 +1,4 @@
+import 'package:aaa/modules/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 class signUp extends StatelessWidget {
   var emailController   = TextEditingController();
@@ -33,7 +34,7 @@ class signUp extends StatelessWidget {
 
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(labelText: 'First Name',
-                      border: const OutlineInputBorder(),
+                      border:  OutlineInputBorder(),
                       prefixIcon: Icon(Icons.account_box_rounded,),
 
                     ),
@@ -46,8 +47,8 @@ class signUp extends StatelessWidget {
                     keyboardType: TextInputType.visiblePassword,
                     obscureText:true ,
                     decoration: const InputDecoration(labelText: 'Last name',
-                        border: const OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.account_box_rounded,),
+                      border:  OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.account_box_rounded,),
                     ),
 
                   ),
@@ -65,7 +66,7 @@ class signUp extends StatelessWidget {
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(labelText: 'email address',
-                      border: const OutlineInputBorder(),
+                      border:  OutlineInputBorder(),
                       prefixIcon: Icon(Icons.email,),
 
                     ),
@@ -85,21 +86,24 @@ class signUp extends StatelessWidget {
                     keyboardType: TextInputType.visiblePassword,
                     obscureText:true ,
                     decoration: const InputDecoration(labelText: 'Password',
-                        border: const OutlineInputBorder(),
+                        border:  OutlineInputBorder(),
                         prefixIcon: Icon(Icons.lock,),
-                        suffixIcon: const Icon(Icons.remove_red_eye)
+                        suffixIcon:  Icon(Icons.remove_red_eye)
                     ),
 
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                       width: 280,
                       height: 45,
                       child:
                       GestureDetector(
                         onTap: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) =>  login()),);
                           print(emailController.text);
                           print(passwordController.text);
                         },

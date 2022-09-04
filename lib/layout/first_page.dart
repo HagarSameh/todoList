@@ -1,7 +1,6 @@
 import 'package:aaa/layout/signUp.dart';
 import 'package:aaa/modules/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'notification_service.dart';
 class first_page extends StatelessWidget {
   var emailController   = TextEditingController();
   var passwordController = TextEditingController();

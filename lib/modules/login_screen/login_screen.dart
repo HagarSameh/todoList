@@ -10,7 +10,7 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  late Database database;
+  var database;
 
   var emailController   = TextEditingController();
 
@@ -89,25 +89,31 @@ class _loginState extends State<login> {
                    child:
                    GestureDetector(
                      onTap: () {
-                      print(emailController.text);
-                      print(passwordController.text);
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Home()),);
-                      createDatabase();
-                      insertDatabase(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      ).then((value) {
-                        getDataFromDatabase(database).then((value) {
-                          Navigator.pop(context);
-                          setState((){});
-                        });
-                      });
-                     print( getDataFromDatabase(database));
-                      database2.execute('TRUNCATE TABLE done');
-                      database.execute('DELETE FROM tasks');
+                       if(emailController.text=='ahmed'||emailController.text=='monica'||emailController.text=='hager'
+                           || passwordController.text=='ahmed'||passwordController.text=='monica'||passwordController.text=='hager'
+                       ) {
+                         print(emailController.text);
+                         print(passwordController.text);
+                         Navigator.push(context,
+                           MaterialPageRoute(
+                               builder: (context) => const Home()),);
 
+                         createDatabase();
+                         insertDatabase(
+                           email: emailController.text,
+                           password: passwordController.text,
+                         ).then((value) {
+                           getDataFromDatabase(database).then((value) {
+                             Navigator.pop(context);
+                             setState(() {});
+                           });
+                         });
+                         print(getDataFromDatabase(database));
+                         //database2.execute('TRUNCATE TABLE done');
+                         database.execute('DELETE FROM tasks');
+                       }
                      },
+
                      child: Container(
                        width: 200,
                        height: 50,
@@ -127,11 +133,11 @@ class _loginState extends State<login> {
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
                    const Text('don`t have an account',
-                   style: TextStyle(fontSize: 22 ,fontWeight: FontWeight.w300),),
+                   style: TextStyle(fontSize: 15 ,fontWeight: FontWeight.w300),),
                    TextButton(onPressed: ()
                    {
 
-                   }, child: const Text('Register Now',style: TextStyle(fontSize: 20, color:Color(0xff458050), fontWeight: FontWeight.w300),),
+                   }, child: const Text('Register Now',style: TextStyle(fontSize: 15, color:Color(0xff458050), fontWeight: FontWeight.w300),),
                    ),
                  ],
                ),

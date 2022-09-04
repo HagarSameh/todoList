@@ -1,9 +1,10 @@
+/*
 import 'package:sqflite/sqflite.dart';
 
 import '../components/constants.dart';
 
 
-late Database database2;
+ var database2;
 void createDatabase2() async{
   database2 = await openDatabase('done.db',
     version: 2,
@@ -70,3 +71,4 @@ void deleteData2({
     print(value);
   });
 }
+*/

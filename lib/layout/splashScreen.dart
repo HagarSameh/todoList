@@ -40,19 +40,21 @@ class _SplashScreen extends State<SplashScreen>{
                 //vertically align center
                 children:<Widget>[
                   Container(
-                    child:SizedBox(
-                        height:820,width:450,
-                       child: Container(
-                       decoration: const BoxDecoration(
-                       image: DecorationImage(
+                    child:Expanded(
+                      child: SizedBox(
+                          height:820,width:450,
+                         child: Container(
+                         decoration: const BoxDecoration(
+                         image: DecorationImage(
 
             image: AssetImage("images/bck.png"),
           fit: BoxFit.cover,
         ),
     ),
-                       ),
+                         ),
 
         ),
+                    ),
                   ),
 
                 ]

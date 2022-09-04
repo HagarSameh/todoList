@@ -1,3 +1,7 @@
+import 'package:aaa/components/components.dart';
+import 'package:aaa/layout/Task.dart';
+import 'package:aaa/layout/search_task.dart';
+import 'package:aaa/layout/settings.dart';
 import 'package:aaa/modules/archived_Tasks/calender.dart';
 import 'package:aaa/modules/doneTasks/doneTask.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +16,7 @@ import 'package:aaa/layout/theme_shared_prefrences.dart';
 import 'package:aaa/layout/ThemeModel.dart';
 import 'package:aaa/util/notification_service.dart';
 import 'package:aaa/layout/database.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,13 +28,13 @@ class _HomeState extends State<Home> {
   late final NotificationService notificationService;
   List<Widget> screens=[
      newtask(),
-     const doneTask(),
      const calender(), //changed this name
+    const settings(),
   ];
   List<String> titles=[
     'New Tasks',
-    'Done Tasks',
     'Calender',
+    'Settings',
   ];
 
   void rebuildAllChildren(BuildContext context) {
@@ -39,7 +44,7 @@ class _HomeState extends State<Home> {
     }
     (context as Element).visitChildren(rebuild);
   }
-  late Database database;
+   var database;
   String? gender; //no radio button will be selected
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
@@ -66,7 +71,7 @@ class _HomeState extends State<Home> {
   void listenToNotificationStream() => notificationService.behaviorSubject.listen((payload) {Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>calender())
+                builder: (context) =>const calender())
         );});
   @override
   Widget build(BuildContext context) {
@@ -162,7 +167,7 @@ class _HomeState extends State<Home> {
                 title: titleController.text,
                 date: dateController.text,
                 time: timeController.text,
-                category: gender.toString(),
+
               ).then((value) {
                 getDataFromDatabase(database).then((value) {
                   Navigator.pop(context);
@@ -210,6 +215,32 @@ class _HomeState extends State<Home> {
                           ),
                           TextFormField(
                             onTap: (){
+                              showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime.parse('2022-09-29'),).then((value)
+                              {
+                                print(DateFormat.yMMMd().format(value!));
+                                dateController.text=DateFormat.yMMMd().format(value!);
+                              });
+                            },
+                            keyboardType: TextInputType.datetime,
+                            validator: ( value) {
+                              if (value == null || value.isEmpty) {
+                                return 'date must not be empty ';
+                              }
+                              return null;
+                            },
+                            controller: dateController,
+                            decoration: const InputDecoration(labelText: 'task date ',
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.calendar_today,),
+                            ),
+                          ),
+
+                          const SizedBox(
+                            height: 15,
+                          ),
+
+                          TextFormField(
+                            onTap: (){
                               showTimePicker(context: context, initialTime: TimeOfDay.now(),).then((value) {
                                 setState(() {
                                   timeController.text = value!.format(context);
@@ -225,35 +256,15 @@ class _HomeState extends State<Home> {
                               return null;
                             },
                             controller: timeController,
-                            decoration: const InputDecoration(labelText: 'task time ',
+                            decoration: const InputDecoration(labelText: 'Settings ',
                               border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.watch_later_outlined,),
+                              prefixIcon: Icon(Icons.access_time,),
                             ),
                           ),
                           const SizedBox(
                             height: 15,
                           ),
-                          TextFormField(
-                            onTap: (){
-                        showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime.parse('2022-09-29'),).then((value)
-                        {
-                          print(DateFormat.yMMMd().format(value!));
-                          dateController.text=DateFormat.yMMMd().format(value!);
-                        });
-                            },
-                            keyboardType: TextInputType.datetime,
-                            validator: ( value) {
-                              if (value == null || value.isEmpty) {
-                                return 'date must not be empty ';
-                              }
-                              return null;
-                            },
-                            controller: dateController,
-                            decoration: const InputDecoration(labelText: 'task date ',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.calendar_today,),
-                            ),
-                          ),
+
                           const SizedBox(
                             height: 15,
                           ),
@@ -283,34 +294,7 @@ class _HomeState extends State<Home> {
                           const SizedBox(
                         height: 15,
                       ),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                         child: Text("Category",
-                             style: TextStyle(fontSize: 20,color:Colors.black54,fontWeight: FontWeight.w600)),
 
-                      ),
-
-                          Center(
-                          child: SizedBox(
-                              width: 250,
-                              child: DropdownButton<String>(
-                                  isExpanded: true,
-                                  value: dropdownValue,
-                                  items: <String>['Work','Entertainment','Shopping','Going out']
-                                      .map<DropdownMenuItem<String>>((String value){
-                                    return DropdownMenuItem<String>(
-                                        value: value,
-                                        child:Text(value)
-                                    );
-                                  }).toList(),
-                                  onChanged: (String? newValue){
-                                    setState(() {
-                                      dropdownValue = newValue??dropdownValue;
-                                    });
-                                  }
-                              )
-                          )
-                      ),
               ],
             ),
                     ),
@@ -366,16 +350,16 @@ class _HomeState extends State<Home> {
           ),
             label: 'Task',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline,),
-         label:'Done',
-          ),
-          //--------------------------------
+
           //What I changed
           BottomNavigationBarItem(icon: Icon(Icons.calendar_month,),
             label: 'Calender',
           ),
           //------------------------------------
-
+          BottomNavigationBarItem(icon: Icon(Icons.check_circle_outline,),
+            label:'Settings',
+          ),
+          //--------------------------------
         ],
       ),
     );
@@ -407,7 +391,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Future insertDatabase({required String title, required String time, required String date, required String category,}) async{
+  Future insertDatabase({required String title, required String time, required String date}) async{
     return await database.transaction((txn) async {
       txn.rawInsert('INSERT INTO tasks(title, date, time, status)VALUES("$title","$date","$time","New")').then((value) {
         print('$value inserted successfully');
@@ -424,7 +408,7 @@ class _HomeState extends State<Home> {
   }
 
   void updateData({required String status, required int id,}) async {
-    database.rawUpdate(
+    database!.rawUpdate(
       'UPDATE tasks SET status = ? WHERE id = ?',
       ['$status', id],
     ).then((value)
@@ -434,7 +418,7 @@ class _HomeState extends State<Home> {
   }
 
   void deleteData({required int id,}) async {
-    database.rawDelete('DELETE FROM tasks WHERE id=', [id])
+    database!.rawDelete('DELETE FROM tasks WHERE id=', [id])
         .then((value)
     {
       getDataFromDatabase(database);
@@ -447,7 +431,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController(text: 'initial value');
+    TextEditingController _controller = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -461,7 +445,7 @@ class SearchPage extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
             child: Center(
               child: TextField(
-
+                controller: _controller,
                 decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.search),
                     suffixIcon: IconButton(
@@ -473,8 +457,19 @@ class SearchPage extends StatelessWidget {
                     hintText: 'Search...',
                     hintStyle: const TextStyle(color: Colors.black45),
                     border: InputBorder.none),
+                onSubmitted: ( value) {
+                  Get.to(() => search_Task());
+                  Task.title = _controller.text;
+                  Task.time="4:43AM";
+                  Task.date="Sep 6,2022";
+
+
+
+                }
               ),
+
             ),
+
           )
       ),
     );

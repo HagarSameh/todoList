@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import '../components/constants.dart';
 
 
-late Database database;
+var database;
 void createDatabase() async{
   database = await openDatabase('todo.db',
     version: 1,
@@ -30,7 +30,7 @@ Future insertDatabase({
   required String date,
   required String category,
 }) async{
-  return await database.transaction((txn) async {
+  return await database!.transaction((txn) async {
     txn.rawInsert('INSERT INTO tasks(title, date, time, status)VALUES("$title","$date","$time","New")').then((value) {
       print('$value inserted successfully');
     }).catchError((error){
@@ -49,7 +49,7 @@ void updateData({
   required int id,
 }) async
 {
-  database.rawUpdate(
+  database!.rawUpdate(
     'UPDATE tasks SET status = ? WHERE id = ?',
     ['status', id],
   ).then((value)
@@ -62,7 +62,7 @@ void deleteData({
   required int id,
 }) async
 {
-  database.rawDelete('DELETE FROM tasks WHERE id= ?', [id])
+  database!.rawDelete('DELETE FROM tasks WHERE id= ?', [id])
       .then((value)
   {
     //getDataFromDatabase(database);

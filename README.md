@@ -31,3 +31,8 @@ Feel free to explore the code, customize the application, and contribute to the 
 
 ## Documentation
 For detailed documentation and instructions on setting up the application, please refer to the README file in the repository. It provides step-by-step guides, explanations of core functionalities, and additional resources for further customization.
+
+## Application Interface
+![38c9ffb4-ce01-4e2a-8799-2059de8b0596](https://github.com/HagarSameh/todoList/assets/71992147/7aa2527d-6506-468a-946f-1a4c61b6f834)
+## 
+![961eed96-6ae0-4019-90d4-621b152c4bcd](https://github.com/HagarSameh/todoList/assets/71992147/c945b3df-fe58-42bd-8761-f92ad3f2f015)
